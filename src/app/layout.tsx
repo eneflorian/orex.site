@@ -14,8 +14,12 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Orex.site - Next.js 14 App",
-  description: "Aplicație Next.js 14 cu deployment automat pe orex.site. Construită cu TypeScript, Tailwind CSS și GitHub Actions.",
+  title: "OLX Scraper Pro - Monitor anunțuri OLX în timp real",
+  description: "Monitorizează și analizează anunțurile de pe OLX.ro cu scraping în timp real. Găsește cele mai bune oferte și urmărește tendințele de piață cu OLX Monitor.",
+  keywords: "OLX, scraper, monitor, anunțuri, preturi, piață, România, imobiliare, auto, telefoane",
+  authors: [{ name: "OLX Monitor Team" }],
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow"
 };
 
 export default function RootLayout({
