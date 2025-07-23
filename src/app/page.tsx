@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const CATEGORII_OLX = [
   { id: "imobiliare", label: "🏠 Imobiliare", color: "#10b981" },
@@ -567,8 +567,8 @@ export default function Home() {
         setStatistici({
           totalAnunturi: data.anunturi.length,
           pretMediu: data.statistici?.pretMediu || 0,
-          anunturiNoi: data.anunturi.filter((a: any) => a.dataPublicare === new Date().toISOString().split('T')[0]).length,
-          categoriiActive: new Set(data.anunturi.map((a: any) => a.categorie)).size,
+                   anunturiNoi: data.anunturi.filter((a: Anunt) => a.dataPublicare === new Date().toISOString().split('T')[0]).length,
+         categoriiActive: new Set(data.anunturi.map((a: Anunt) => a.categorie)).size,
         });
       } else {
         console.error("❌ Eroare la căutare:", data.error);
@@ -692,7 +692,7 @@ export default function Home() {
               <div className="empty-state-icon">📊</div>
               <h3 className="empty-state-title">Nu monitorizezi niciun anunț</h3>
               <p className="empty-state-text">
-                Mergi la secțiunea "Scraping Live" și adaugă anunțuri la monitorizare.
+                                 Mergi la secțiunea &quot;Scraping Live&quot; și adaugă anunțuri la monitorizare.
               </p>
             </div>
           )}

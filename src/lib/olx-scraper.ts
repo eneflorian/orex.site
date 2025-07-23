@@ -16,7 +16,7 @@ export interface AnuntOLX {
   metri?: string;
   camere?: string;
   etaj?: string;
-  [key: string]: any;
+  [key: string]: string | number | boolean | undefined;
 }
 
 export interface CategorieOLX {
@@ -88,12 +88,12 @@ class OLXScraper {
           const pageProps = nextData?.props?.pageProps;
           
           if (pageProps?.data?.ads) {
-            pageProps.data.ads.forEach((ad: any, index: number) => {
+            pageProps.data.ads.forEach((ad: Record<string, unknown>, index: number) => {
               const anunt = this.parseAnuntFromAPI(ad, categorie, index);
               if (anunt) anunturi.push(anunt);
             });
           }
-        } catch (jsonError) {
+                 } catch {
           console.warn('Nu s-a putut parsa JSON-ul Next.js, folosind parsing HTML simplu');
         }
       }
@@ -116,7 +116,7 @@ class OLXScraper {
     return anunturi;
   }
 
-  private parseAnuntFromAPI(ad: any, categorie: string, index: number): AnuntOLX | null {
+  private parseAnuntFromAPI(ad: Record<string, unknown>, categorie: string, index: number): AnuntOLX | null {
     try {
       const id = ad.id || `api_${Date.now()}_${index}`;
       const titlu = ad.title || `Anunț OLX ${index + 1}`;
@@ -125,17 +125,24 @@ class OLXScraper {
       let pret = 0;
       let valuta = 'lei';
       
-      if (ad.price?.value) {
-        pret = parseInt(ad.price.value) || 0;
-        valuta = ad.price.currency?.toLowerCase() || 'lei';
+              if (ad.price && typeof ad.price === 'object' && 'value' in ad.price) {
+          const priceObj = ad.price as Record<string, unknown>;
+          pret = parseInt(String(priceObj.value)) || 0;
+          valuta = String(priceObj.currency)?.toLowerCase() || 'lei';
         if (valuta === 'eur' || valuta === 'euro') valuta = 'EUR';
         if (valuta === 'usd' || valuta === '$') valuta = 'USD';
         if (valuta === 'ron' || valuta === 'lei') valuta = 'LEI';
       }
       
-      const locatie = ad.location?.city?.name || ad.location?.region?.name || 'România';
-      const imagine = ad.photos?.[0]?.link || `https://via.placeholder.com/300x200?text=OLX`;
-      const url = `${this.baseURL}/d/oferta/${ad.slug || id}`;
+              const locationObj = ad.location as Record<string, unknown> | undefined;
+        const cityObj = locationObj?.city as Record<string, unknown> | undefined;
+        const regionObj = locationObj?.region as Record<string, unknown> | undefined;
+        const locatie = String(cityObj?.name || regionObj?.name || 'România');
+        
+        const photosArray = ad.photos as Array<Record<string, unknown>> | undefined;
+        const imagine = String(photosArray?.[0]?.link || `https://via.placeholder.com/300x200?text=OLX`);
+        
+        const url = `${this.baseURL}/d/oferta/${ad.slug || id}`;
       
       return {
         id: id.toString(),
@@ -145,10 +152,10 @@ class OLXScraper {
         locatie,
         tip: this.determinaTipAnunt(titlu),
         categorie,
-        dataPublicare: ad.created_time || new Date().toISOString().split('T')[0],
+        dataPublicare: String(ad.created_time || new Date().toISOString().split('T')[0]),
         imagine,
         url,
-        descriere: ad.description || titlu,
+        descriere: String(ad.description || titlu),
         selectat: false
       };
     } catch (error) {

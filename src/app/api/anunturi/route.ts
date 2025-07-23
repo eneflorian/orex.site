@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
     } else {
       // Verifică cache-ul
       const now = Date.now();
-      const cacheKey = `${categorie}-${oras}-${query}-${pretMin}-${pretMax}`;
       
       if (anunturiCache.length > 0 && (now - lastFetch) < CACHE_DURATION) {
         console.log('📦 Folosind date din cache');
