@@ -1,15 +1,20 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Anunt {
-  id: number;
+  id: string;
   titlu: string;
   pret: number;
+  valuta: string;
   locatie: string;
   tip: string;
   categorie: string;
-  selectat: boolean;
+  dataPublicare: string;
+  imagine: string;
+  url: string;
+  descriere: string;
+  selectat?: boolean;
 }
 
 interface Filtre {
@@ -17,6 +22,14 @@ interface Filtre {
   titlu: string;
   pretMax: string;
   tip: string;
+  oras: string;
+}
+
+interface Statistici {
+  pretMediu: number;
+  pretMin: number;
+  pretMax: number;
+  categorii: number;
 }
 
 interface Tab {
@@ -31,47 +44,29 @@ interface Categorie {
 
 const CATEGORII_OLX: Categorie[] = [
   { id: "imobiliare", label: "Imobiliare" },
-  { id: "telefoane", label: "Telefoane" },
-  { id: "electronice", label: "Electronice" },
-  { id: "auto", label: "Auto" },
+  { id: "telefoane", label: "Telefoane/Tablete" },
+  { id: "electronice", label: "Electronice & IT" },
+  { id: "auto-moto", label: "Auto/Moto" },
   { id: "moda", label: "Modă" },
+  { id: "casa-gradina", label: "Casă & Grădină" },
   { id: "servicii", label: "Servicii" },
 ];
 
-const anunturiMock: Anunt[] = [
-  {
-    id: 1,
-    titlu: "Casă individuală, 4 camere, zona Turnișor",
-    pret: 120000,
-    locatie: "Sibiu",
-    tip: "Casă",
-    categorie: "imobiliare",
-    selectat: false,
-  },
-  {
-    id: 2,
-    titlu: "Vilă modernă, 5 camere, Calea Cisnădiei",
-    pret: 185000,
-    locatie: "Sibiu",
-    tip: "Vilă",
-    categorie: "imobiliare",
-    selectat: false,
-  },
-  {
-    id: 3,
-    titlu: "iPhone 13 Pro Max, 256GB, ca nou",
-    pret: 4200,
-    locatie: "Sibiu",
-    tip: "Telefon",
-    categorie: "telefoane",
-    selectat: false,
-  },
+const ORASE = [
+  { id: "sibiu", label: "Sibiu" },
+  { id: "bucuresti", label: "București" },
+  { id: "cluj", label: "Cluj-Napoca" },
+  { id: "timisoara", label: "Timișoara" },
+  { id: "iasi", label: "Iași" },
+  { id: "constanta", label: "Constanța" },
+  { id: "brasov", label: "Brașov" },
 ];
 
 const TABURI: Tab[] = [
   { id: "home", label: "🏠 Acasă" },
   { id: "monitorizare", label: "📊 Monitorizare" },
   { id: "toate", label: "📋 Toate anunțurile" },
+  { id: "statistici", label: "📈 Statistici" },
 ];
 
 interface BaraTaburiProps {
@@ -81,19 +76,19 @@ interface BaraTaburiProps {
 
 function BaraTaburi({ tab, setTab }: BaraTaburiProps) {
   return (
-    <div style={{ display: 'flex', gap: 16, marginBottom: 32 }}>
+    <div style={{ display: 'flex', gap: 16, marginBottom: 32, flexWrap: 'wrap' }}>
       {TABURI.map(t => (
         <button
           key={t.id}
           onClick={() => setTab(t.id)}
           style={{
-            padding: '12px 24px',
+            padding: '12px 20px',
             borderRadius: 12,
             border: 'none',
             background: tab === t.id ? '#000' : 'rgba(0,0,0,0.1)',
             color: tab === t.id ? '#eab308' : '#ca8a04',
             fontWeight: 600,
-            fontSize: '0.95em',
+            fontSize: '0.9em',
             cursor: 'pointer',
             boxShadow: tab === t.id ? '0 4px 12px rgba(0,0,0,0.15)' : 'none',
             transition: 'all 0.3s ease',
@@ -113,36 +108,41 @@ function HomeSection() {
         OREX.SITE
       </h1>
       <p className="text-xl text-yellow-900 mb-2">
-        Monitorizare inteligentă OLX + Deployment automat
+        🔍 Monitor inteligent OLX cu scraping în timp real
       </p>
       <p className="text-sm text-yellow-800 mb-8">
-        Powered by Node.js 22 • Next.js 14 • TypeScript • Tailwind CSS
+        Powered by Node.js 22 • Next.js 14 • TypeScript • Cheerio • Axios
       </p>
 
       <div className="flex items-center gap-2 justify-center text-sm font-mono bg-green-600/20 text-green-800 px-4 py-3 rounded-lg border border-green-600/30 mb-8 max-w-md mx-auto">
         <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse"></div>
-        Deployment automat activat via GitHub Actions
+        Deployment automat + Scraping OLX live
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
         <div className="bg-black/5 p-6 rounded-xl border border-yellow-200">
           <div className="text-2xl mb-3">🔍</div>
-          <h3 className="font-bold text-yellow-900 mb-2">Monitorizare OLX</h3>
-          <p className="text-sm text-yellow-800">Urmărește anunțurile care te interesează și primește notificări automate</p>
-        </div>
-        <div className="bg-black/5 p-6 rounded-xl border border-yellow-200">
-          <div className="text-2xl mb-3">🚀</div>
-          <h3 className="font-bold text-yellow-900 mb-2">Deployment Automat</h3>
-          <p className="text-sm text-yellow-800">Orice commit pe GitHub se deploiază automat pe orex.site</p>
+          <h3 className="font-bold text-yellow-900 mb-2">Scraping Live</h3>
+          <p className="text-sm text-yellow-800">Extrage anunțuri direct de pe OLX.ro în timp real</p>
         </div>
         <div className="bg-black/5 p-6 rounded-xl border border-yellow-200">
           <div className="text-2xl mb-3">📊</div>
-          <h3 className="font-bold text-yellow-900 mb-2">Statistici Live</h3>
-          <p className="text-sm text-yellow-800">Analiză în timp real a prețurilor și tendințelor de pe OLX</p>
+          <h3 className="font-bold text-yellow-900 mb-2">Monitorizare</h3>
+          <p className="text-sm text-yellow-800">Urmărește anunțurile favorite și primește notificări</p>
+        </div>
+        <div className="bg-black/5 p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-3">🚀</div>
+          <h3 className="font-bold text-yellow-900 mb-2">Auto Deploy</h3>
+          <p className="text-sm text-yellow-800">Commit pe GitHub → Deploy automat pe orex.site</p>
+        </div>
+        <div className="bg-black/5 p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-3">📈</div>
+          <h3 className="font-bold text-yellow-900 mb-2">Statistici</h3>
+          <p className="text-sm text-yellow-800">Analiză prețuri, tendințe și rapoarte detaliate</p>
         </div>
       </div>
 
-      <div className="flex gap-4 items-center justify-center mt-8">
+      <div className="flex gap-4 items-center justify-center mt-8 flex-wrap">
         <a
           className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-black text-yellow-400 gap-2 hover:bg-gray-800 text-sm font-semibold h-12 px-6"
           href="https://github.com/eneflorian/orex.site"
@@ -156,27 +156,53 @@ function HomeSection() {
         </a>
         <a
           className="rounded-full border border-solid border-black/20 transition-colors flex items-center justify-center hover:bg-black/10 hover:border-black/40 text-yellow-900 text-sm h-12 px-6"
-          href="https://nextjs.org/docs"
+          href="https://www.olx.ro"
           target="_blank"
           rel="noopener noreferrer"
         >
-          📚 Documentație Next.js
+          🛒 OLX.ro
         </a>
       </div>
     </div>
   );
 }
 
-interface FiltreMonitorizareProps {
+interface FiltreProps {
   filtre: Filtre;
   setFiltre: React.Dispatch<React.SetStateAction<Filtre>>;
+  onRefresh: () => void;
+  loading: boolean;
 }
 
-function FiltreMonitorizare({ filtre, setFiltre }: FiltreMonitorizareProps) {
+function FiltreAvansate({ filtre, setFiltre, onRefresh, loading }: FiltreProps) {
   return (
     <div className="bg-black/5 p-6 rounded-xl border border-yellow-200 mb-6">
-      <h3 className="font-bold text-yellow-900 mb-4">🔍 Filtre de căutare</h3>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="font-bold text-yellow-900">🔍 Filtre de căutare OLX</h3>
+        <button
+          onClick={onRefresh}
+          disabled={loading}
+          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+            loading 
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+              : 'bg-yellow-500 text-white hover:bg-yellow-600'
+          }`}
+        >
+          {loading ? '🔄 Scraping...' : '🔄 Refresh Live'}
+        </button>
+      </div>
+      
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <select
+          value={filtre.oras}
+          onChange={e => setFiltre((f: Filtre) => ({ ...f, oras: e.target.value }))}
+          className="px-4 py-2 rounded-lg border border-yellow-300 bg-white text-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+        >
+          {ORASE.map(oras => (
+            <option key={oras.id} value={oras.id}>{oras.label}</option>
+          ))}
+        </select>
+        
         <select
           value={filtre.categorie}
           onChange={e => setFiltre((f: Filtre) => ({ ...f, categorie: e.target.value }))}
@@ -198,7 +224,7 @@ function FiltreMonitorizare({ filtre, setFiltre }: FiltreMonitorizareProps) {
         
         <input
           type="number"
-          placeholder="Preț maxim (€)"
+          placeholder="Preț maxim (lei)"
           value={filtre.pretMax}
           onChange={e => setFiltre((f: Filtre) => ({ ...f, pretMax: e.target.value }))}
           className="px-4 py-2 rounded-lg border border-yellow-300 bg-white text-yellow-900 focus:outline-none focus:ring-2 focus:ring-yellow-500"
@@ -211,8 +237,10 @@ function FiltreMonitorizare({ filtre, setFiltre }: FiltreMonitorizareProps) {
         >
           <option value="">Toate tipurile</option>
           <option value="Casă">Casă</option>
-          <option value="Vilă">Vilă</option>
+          <option value="Apartament">Apartament</option>
           <option value="Telefon">Telefon</option>
+          <option value="Laptop">Laptop</option>
+          <option value="Autoturism">Autoturism</option>
         </select>
       </div>
     </div>
@@ -221,18 +249,38 @@ function FiltreMonitorizare({ filtre, setFiltre }: FiltreMonitorizareProps) {
 
 interface ListaAnunturiProps {
   anunturi: Anunt[];
-  toggleMonitorizare: (id: number) => void;
+  toggleMonitorizare: (id: string) => void;
   titlu: string;
+  loading: boolean;
+  statistici?: Statistici;
 }
 
-function ListaAnunturi({ anunturi, toggleMonitorizare, titlu }: ListaAnunturiProps) {
+function ListaAnunturi({ anunturi, toggleMonitorizare, titlu, loading, statistici }: ListaAnunturiProps) {
+  if (loading) {
+    return (
+      <div className="text-center py-12">
+        <div className="text-4xl mb-4 animate-spin">🔄</div>
+        <p className="text-yellow-700">Se încarcă anunțurile de pe OLX...</p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <h3 className="font-bold text-yellow-900 mb-6 text-xl">{titlu}</h3>
+      <div className="flex justify-between items-center mb-6">
+        <h3 className="font-bold text-yellow-900 text-xl">{titlu}</h3>
+        {statistici && (
+          <div className="text-sm text-yellow-700 bg-yellow-50 px-3 py-1 rounded-lg">
+            📊 {anunturi.length} anunțuri • Preț mediu: {statistici.pretMediu.toLocaleString()} lei
+          </div>
+        )}
+      </div>
+      
       {anunturi.length === 0 ? (
         <div className="text-center py-12 text-yellow-700">
           <div className="text-4xl mb-4">🔍</div>
           <p>Nu sunt anunțuri pentru criteriile selectate.</p>
+          <p className="text-sm mt-2">Încearcă să modifici filtrele sau să faci refresh.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -240,7 +288,7 @@ function ListaAnunturi({ anunturi, toggleMonitorizare, titlu }: ListaAnunturiPro
             <div key={anunt.id} className="bg-white p-6 rounded-xl border border-yellow-200 shadow-sm hover:shadow-md transition-shadow">
               <div className="flex justify-between items-start mb-3">
                 <span className="text-xs font-medium px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">
-                  {CATEGORII_OLX.find(c => c.id === anunt.categorie)?.label}
+                  {CATEGORII_OLX.find(c => c.id === anunt.categorie)?.label || anunt.categorie}
                 </span>
                 <button
                   onClick={() => toggleMonitorizare(anunt.id)}
@@ -254,12 +302,24 @@ function ListaAnunturi({ anunturi, toggleMonitorizare, titlu }: ListaAnunturiPro
                 </button>
               </div>
               
+              <div className="mb-3">
+                <img 
+                  src={anunt.imagine} 
+                  alt={anunt.titlu}
+                  className="w-full h-32 object-cover rounded-lg"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://via.placeholder.com/300x200?text=OLX';
+                  }}
+                />
+              </div>
+              
               <h4 className="font-bold text-yellow-900 mb-2 line-clamp-2">{anunt.titlu}</h4>
               
               <div className="space-y-2 text-sm text-yellow-800">
                 <div className="flex justify-between">
                   <span>💰 Preț:</span>
-                  <span className="font-bold">{anunt.pret.toLocaleString()} EUR</span>
+                  <span className="font-bold">{anunt.pret.toLocaleString()} {anunt.valuta}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>📍 Locație:</span>
@@ -269,6 +329,21 @@ function ListaAnunturi({ anunturi, toggleMonitorizare, titlu }: ListaAnunturiPro
                   <span>🏷️ Tip:</span>
                   <span>{anunt.tip}</span>
                 </div>
+                <div className="flex justify-between">
+                  <span>📅 Data:</span>
+                  <span>{anunt.dataPublicare}</span>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <a
+                  href={anunt.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full text-center px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm font-medium"
+                >
+                  🔗 Vezi pe OLX
+                </a>
               </div>
             </div>
           ))}
@@ -278,27 +353,167 @@ function ListaAnunturi({ anunturi, toggleMonitorizare, titlu }: ListaAnunturiPro
   );
 }
 
-export default function Home() {
-  const [filtre, setFiltre] = useState<Filtre>({ categorie: "", titlu: "", pretMax: "", tip: "" });
-  const [anunturi, setAnunturi] = useState<Anunt[]>(anunturiMock);
-  const [tab, setTab] = useState<string>("home");
+function StatisticiSection({ statistici, anunturi }: { statistici?: Statistici; anunturi: Anunt[] }) {
+  if (!statistici) return null;
 
-  const anunturiFiltrate = anunturi.filter(a =>
-    (!filtre.categorie || a.categorie === filtre.categorie) &&
-    (!filtre.titlu || a.titlu.toLowerCase().includes(filtre.titlu.toLowerCase())) &&
-    (!filtre.pretMax || a.pret <= parseInt(filtre.pretMax)) &&
-    (!filtre.tip || a.tip === filtre.tip)
+  const categoriiDistribute = anunturi.reduce((acc, anunt) => {
+    acc[anunt.categorie] = (acc[anunt.categorie] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const oraseDistribute = anunturi.reduce((acc, anunt) => {
+    acc[anunt.locatie] = (acc[anunt.locatie] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  return (
+    <div className="space-y-6">
+      <h3 className="font-bold text-yellow-900 text-xl mb-6">📈 Statistici anunțuri</h3>
+      
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-2">💰</div>
+          <h4 className="font-bold text-yellow-900">Preț mediu</h4>
+          <p className="text-2xl font-bold text-green-600">{statistici.pretMediu.toLocaleString()} lei</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-2">📊</div>
+          <h4 className="font-bold text-yellow-900">Total anunțuri</h4>
+          <p className="text-2xl font-bold text-blue-600">{anunturi.length}</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-2">💵</div>
+          <h4 className="font-bold text-yellow-900">Preț minim</h4>
+          <p className="text-2xl font-bold text-red-600">{statistici.pretMin.toLocaleString()} lei</p>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <div className="text-2xl mb-2">💎</div>
+          <h4 className="font-bold text-yellow-900">Preț maxim</h4>
+          <p className="text-2xl font-bold text-purple-600">{statistici.pretMax.toLocaleString()} lei</p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <h4 className="font-bold text-yellow-900 mb-4">🏷️ Distribuție categorii</h4>
+          <div className="space-y-2">
+            {Object.entries(categoriiDistribute).map(([categorie, count]) => (
+              <div key={categorie} className="flex justify-between">
+                <span className="text-yellow-800">{CATEGORII_OLX.find(c => c.id === categorie)?.label || categorie}</span>
+                <span className="font-bold">{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="bg-white p-6 rounded-xl border border-yellow-200">
+          <h4 className="font-bold text-yellow-900 mb-4">📍 Distribuție orașe</h4>
+          <div className="space-y-2">
+            {Object.entries(oraseDistribute).slice(0, 10).map(([oras, count]) => (
+              <div key={oras} className="flex justify-between">
+                <span className="text-yellow-800">{oras}</span>
+                <span className="font-bold">{count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
+}
 
-  const toggleMonitorizare = (id: number) => {
-    setAnunturi(anunturi =>
-      anunturi.map(a =>
-        a.id === id ? { ...a, selectat: !a.selectat } : a
-      )
-    );
+export default function Home() {
+  const [filtre, setFiltre] = useState<Filtre>({ 
+    categorie: "", 
+    titlu: "", 
+    pretMax: "", 
+    tip: "", 
+    oras: "sibiu" 
+  });
+  const [anunturi, setAnunturi] = useState<Anunt[]>([]);
+  const [tab, setTab] = useState<string>("home");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [statistici, setStatistici] = useState<Statistici>();
+
+  const fetchAnunturi = async (useMock = false) => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams();
+      if (filtre.categorie) params.append('categorie', filtre.categorie);
+      if (filtre.titlu) params.append('titlu', filtre.titlu);
+      if (filtre.pretMax) params.append('pretMax', filtre.pretMax);
+      if (filtre.tip) params.append('tip', filtre.tip);
+      if (filtre.oras) params.append('oras', filtre.oras);
+      if (useMock) params.append('mock', 'true');
+
+      const response = await fetch(`/api/anunturi?${params.toString()}`);
+      const data = await response.json();
+
+      if (data.success) {
+        setAnunturi(data.anunturi);
+        setStatistici(data.statistici);
+        console.log(`✅ S-au încărcat ${data.total} anunțuri din sursa: ${data.metadata.source}`);
+      } else {
+        console.error('❌ Eroare la încărcarea anunțurilor:', data.error);
+        setAnunturi([]);
+      }
+    } catch (error) {
+      console.error('❌ Eroare la fetch:', error);
+      setAnunturi([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const anunturiMonitorizate = anunturiFiltrate.filter(a => a.selectat);
+  const toggleMonitorizare = async (id: string) => {
+    try {
+      const anunt = anunturi.find(a => a.id === id);
+      if (!anunt) return;
+
+      const response = await fetch('/api/anunturi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          action: 'toggle_monitorizare',
+          anuntId: id,
+          monitorizat: !anunt.selectat
+        })
+      });
+
+      const data = await response.json();
+      if (data.success) {
+        setAnunturi(anunturi =>
+          anunturi.map(a =>
+            a.id === id ? { ...a, selectat: !a.selectat } : a
+          )
+        );
+      }
+    } catch (error) {
+      console.error('Eroare la toggle monitorizare:', error);
+    }
+  };
+
+  // Load data când se schimbă tab-ul
+  useEffect(() => {
+    if (tab !== "home") {
+      fetchAnunturi(false); // Folosește scraping real
+    }
+  }, [tab]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Load data când se schimbă filtrele (cu delay pentru performance)
+  useEffect(() => {
+    if (tab !== "home") {
+      const timeoutId = setTimeout(() => {
+        fetchAnunturi(false);
+      }, 500);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [filtre, tab]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const anunturiMonitorizate = anunturi.filter(a => a.selectat);
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -309,31 +524,43 @@ export default function Home() {
         
         {tab === "monitorizare" && (
           <>
-            <FiltreMonitorizare filtre={filtre} setFiltre={setFiltre} />
+            <FiltreAvansate filtre={filtre} setFiltre={setFiltre} onRefresh={() => fetchAnunturi(false)} loading={loading} />
             <ListaAnunturi 
               anunturi={anunturiMonitorizate} 
               toggleMonitorizare={toggleMonitorizare}
               titlu="📊 Anunțuri monitorizate"
+              loading={loading}
+              statistici={statistici}
             />
           </>
         )}
         
         {tab === "toate" && (
           <>
-            <FiltreMonitorizare filtre={filtre} setFiltre={setFiltre} />
+            <FiltreAvansate filtre={filtre} setFiltre={setFiltre} onRefresh={() => fetchAnunturi(false)} loading={loading} />
             <ListaAnunturi 
-              anunturi={anunturiFiltrate} 
+              anunturi={anunturi} 
               toggleMonitorizare={toggleMonitorizare}
-              titlu="📋 Toate anunțurile disponibile"
+              titlu="📋 Toate anunțurile OLX live"
+              loading={loading}
+              statistici={statistici}
             />
           </>
+        )}
+
+        {tab === "statistici" && (
+          <StatisticiSection statistici={statistici} anunturi={anunturi} />
         )}
       </main>
       
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center text-sm text-yellow-800">
         <div className="flex items-center gap-2">
+          <span>🔍</span>
+          <span>OLX Scraping în timp real</span>
+        </div>
+        <div className="flex items-center gap-2">
           <span>🚀</span>
-          <span>Deployment automat pe commit</span>
+          <span>Deployment automat</span>
         </div>
         <div className="flex items-center gap-2">
           <span>⚡</span>
@@ -341,7 +568,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2">
           <span>🟡</span>
-          <span>OLX Monitor + Git pull integrare!</span>
+          <span>Integrare completă olx-monitor!</span>
         </div>
       </footer>
     </div>
