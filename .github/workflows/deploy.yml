@@ -1,0 +1,61 @@
+name: Deploy to orex.site
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.11'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build application
+      run: npm run build
+      
+    - name: Deploy to orex.site
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      run: |
+        # Install rsync if not available
+        sudo apt-get update && sudo apt-get install -y rsync sshpass
+        
+        # Create SSH directory
+        mkdir -p ~/.ssh
+        
+        # Add server to known hosts
+        ssh-keyscan -H 64.225.49.128 >> ~/.ssh/known_hosts
+        
+        # Deploy files using rsync
+        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz --delete \
+          --exclude 'node_modules' \
+          --exclude '.git' \
+          --exclude '.github' \
+          --exclude '.next/cache' \
+          ./ root@64.225.49.128:/var/www/orex-app/
+        
+        # Restart application on server
+        sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh root@64.225.49.128 "
+          cd /var/www/orex-app &&
+          npm ci --only=production &&
+          npm run build &&
+          pm2 restart orex-app || pm2 start npm --name orex-app -- start
+        "
+      env:
+        SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}
