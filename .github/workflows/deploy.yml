@@ -46,7 +46,7 @@ jobs:
         sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh root@64.225.49.128 "
           cd /var/www/orex.site &&
           git pull origin main &&
-          npm ci --only=production &&
+          npm ci &&
           npm run build &&
           pm2 restart orex-site || pm2 start npm --name orex-site -- start
         "

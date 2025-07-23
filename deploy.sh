@@ -18,7 +18,7 @@ echo "📤 Pulling latest changes on server..."
 ssh ${SERVER_USER}@${SERVER_HOST} "
   cd ${SERVER_PATH} &&
   git pull origin main &&
-  npm ci --only=production &&
+  npm ci &&
   npm run build &&
   pm2 restart ${APP_NAME} || pm2 start npm --name ${APP_NAME} -- start
 "

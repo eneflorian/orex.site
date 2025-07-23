@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "deploy": "./deploy.sh",
-    "deploy:manual": "ssh root@64.225.49.128 'cd /var/www/orex.site && git pull origin main && npm ci --only=production && npm run build && pm2 restart orex-site'",
-    "server:restart": "ssh root@64.225.49.128 'cd /var/www/orex.site && npm ci --only=production && npm run build && pm2 restart orex-site'",
+    "deploy:manual": "ssh root@64.225.49.128 'cd /var/www/orex.site && git pull origin main && npm ci && npm run build && pm2 restart orex-site'",
+    "server:restart": "ssh root@64.225.49.128 'cd /var/www/orex.site && npm ci && npm run build && pm2 restart orex-site'",
     "server:logs": "ssh root@64.225.49.128 'pm2 logs orex-site'",
     "server:status": "ssh root@64.225.49.128 'pm2 status'"
   },
