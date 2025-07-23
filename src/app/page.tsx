@@ -5,19 +5,19 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="text-center sm:text-left">
-          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-6xl font-bold mb-4 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
             OREX.SITE
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-2">
+          <p className="text-xl text-blue-100 mb-2">
             Aplicație Next.js 14 cu deployment automat
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-blue-200">
             Powered by Node.js 22 • TypeScript • Tailwind CSS
           </p>
         </div>
 
-        <div className="flex items-center gap-2 text-sm font-mono bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-400 px-3 py-2 rounded-lg">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+        <div className="flex items-center gap-2 text-sm font-mono bg-green-500/20 text-green-300 px-3 py-2 rounded-lg border border-green-400/30">
+          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
           Deployment automat activat via GitHub Actions
         </div>
 
@@ -35,8 +35,8 @@ export default function Home() {
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 hover:bg-blue-700 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://github.com"
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-white text-blue-600 gap-2 hover:bg-blue-50 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 font-semibold"
+            href="https://github.com/eneflorian/orex.site"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -46,7 +46,7 @@ export default function Home() {
             Vezi pe GitHub
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+            className="rounded-full border border-solid border-white/20 transition-colors flex items-center justify-center hover:bg-white/10 hover:border-white/40 text-blue-100 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
             href="https://nextjs.org/docs"
             target="_blank"
             rel="noopener noreferrer"
@@ -55,7 +55,7 @@ export default function Home() {
           </a>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center text-sm text-gray-500 dark:text-gray-400">
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center text-sm text-blue-200">
         <div className="flex items-center gap-2">
           <span>🚀</span>
           <span>Deployment automat pe commit</span>
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2">
           <span>🎨</span>
-          <span>Tailwind CSS</span>
+          <span>Background albastru nou!</span>
         </div>
       </footer>
     </div>
