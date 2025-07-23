@@ -66,7 +66,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-2">
           <span>🔴</span>
-          <span>Test background roșu - Git pull!</span>
+          <span>Retry: Server oprit, PM2 activ!</span>
         </div>
       </footer>
     </div>
