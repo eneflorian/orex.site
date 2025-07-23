@@ -79,7 +79,7 @@ class OLXScraper {
     
     try {
       // Căutăm prin regex pentru structurile JSON din HTML
-      const scriptRegex = /<script[^>]*>.*?window\.__NEXT_DATA__\s*=\s*({.*?});.*?<\/script>/gs;
+      const scriptRegex = new RegExp('<script[^>]*>.*?window\\.__NEXT_DATA__\\s*=\\s*({.*?});.*?</script>', 'gms');
       const match = scriptRegex.exec(html);
       
       if (match) {
@@ -100,7 +100,7 @@ class OLXScraper {
       
       // Fallback: căutăm prin HTML simplu
       if (anunturi.length === 0) {
-        const adRegex = /<div[^>]*data-cy="l-card"[^>]*>.*?<\/div>/gs;
+        const adRegex = new RegExp('<div[^>]*data-cy="l-card"[^>]*>.*?</div>', 'gms');
         const matches = html.match(adRegex) || [];
         
         matches.forEach((adHtml, index) => {
@@ -118,8 +118,8 @@ class OLXScraper {
 
   private parseAnuntFromAPI(ad: Record<string, unknown>, categorie: string, index: number): AnuntOLX | null {
     try {
-      const id = ad.id || `api_${Date.now()}_${index}`;
-      const titlu = ad.title || `Anunț OLX ${index + 1}`;
+      const id = String(ad.id || `api_${Date.now()}_${index}`);
+      const titlu = String(ad.title || `Anunț OLX ${index + 1}`);
       
       // Parsează prețul
       let pret = 0;
