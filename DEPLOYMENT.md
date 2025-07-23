@@ -52,14 +52,14 @@ rsync -avz --delete \
   --exclude '.git' \
   --exclude '.github' \
   --exclude '.next/cache' \
-  ./ root@64.225.49.128:/var/www/orex-app/
+  ./ root@64.225.49.128:/var/www/orex.site/
 
 # Restart pe server
 ssh root@64.225.49.128 "
-  cd /var/www/orex-app &&
+  cd /var/www/orex.site &&
   npm ci --only=production &&
   npm run build &&
-  pm2 restart orex-app || pm2 start npm --name orex-app -- start
+  pm2 restart orex-site || pm2 start npm --name orex-site -- start
 "
 ```
 
@@ -86,7 +86,7 @@ Accesează: **https://orex.site**
 - **Host**: 64.225.49.128
 - **User**: root
 - **Password**: 12wq3er4
-- **Path**: /var/www/orex-app
+- **Path**: /var/www/orex.site
 - **Process Manager**: PM2
 - **Port**: 3000
 

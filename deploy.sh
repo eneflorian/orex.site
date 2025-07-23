@@ -10,8 +10,8 @@ echo "🚀 Starting deployment to orex.site..."
 # Server details
 SERVER_HOST="64.225.49.128"
 SERVER_USER="root"
-SERVER_PATH="/var/www/orex-app"
-APP_NAME="orex-app"
+SERVER_PATH="/var/www/orex.site"
+APP_NAME="orex-site"
 
 # Build the application
 echo "📦 Building application..."

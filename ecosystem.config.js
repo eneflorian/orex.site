@@ -1,10 +1,10 @@
 module.exports = {
   apps: [
     {
-      name: 'orex-app',
+      name: 'orex-site',
       script: 'npm',
       args: 'start',
-      cwd: '/var/www/orex-app',
+      cwd: '/var/www/orex.site',
       instances: 1,
       autorestart: true,
       watch: false,
@@ -13,9 +13,9 @@ module.exports = {
         NODE_ENV: 'production',
         PORT: 3000
       },
-      error_file: '/var/log/pm2/orex-app-error.log',
-      out_file: '/var/log/pm2/orex-app-out.log',
-      log_file: '/var/log/pm2/orex-app.log',
+      error_file: '/var/log/pm2/orex-site-error.log',
+      out_file: '/var/log/pm2/orex-site-out.log',
+      log_file: '/var/log/pm2/orex-site.log',
       time: true
     }
   ]

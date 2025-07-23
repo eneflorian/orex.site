@@ -48,14 +48,14 @@ jobs:
           --exclude '.git' \
           --exclude '.github' \
           --exclude '.next/cache' \
-          ./ root@64.225.49.128:/var/www/orex-app/
+          ./ root@64.225.49.128:/var/www/orex.site/
         
         # Restart application on server
         sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh root@64.225.49.128 "
-          cd /var/www/orex-app &&
+          cd /var/www/orex.site &&
           npm ci --only=production &&
           npm run build &&
-          pm2 restart orex-app || pm2 start npm --name orex-app -- start
+          pm2 restart orex-site || pm2 start npm --name orex-site -- start
         "
       env:
         SERVER_PASSWORD: ${{ secrets.SERVER_PASSWORD }}

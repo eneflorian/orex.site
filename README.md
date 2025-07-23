@@ -63,7 +63,7 @@ npm run server:status
 
 - **Server**: 64.225.49.128
 - **User**: root
-- **Path**: /var/www/orex-app
+- **Path**: /var/www/orex.site
 - **Port**: 3000
 - **Process Manager**: PM2
 
