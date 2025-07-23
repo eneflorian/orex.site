@@ -16,7 +16,10 @@
   "dependencies": {
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.30"
+    "next": "14.2.30",
+    "axios": "^1.10.0",
+    "cheerio": "^1.1.0",
+    "puppeteer": "^24.13.0"
   },
   "devDependencies": {
     "typescript": "^5",
