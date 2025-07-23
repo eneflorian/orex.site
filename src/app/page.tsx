@@ -731,9 +731,9 @@ export default function Home() {
 
   const anunturiMonitorizate = anunturi.filter(a => a.selectat);
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50">
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
+      return (
+      <div className="min-h-screen bg-white">
+        <div className="container mx-auto px-4 py-8 max-w-7xl">
         <BaraTaburi tab={tab} setTab={setTab} />
         
         {tab === "home" && <HomeSection />}
