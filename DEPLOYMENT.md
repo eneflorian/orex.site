@@ -43,20 +43,10 @@ npm run server:restart
 ### Opțiunea 3: Comenzi manuale
 
 ```bash
-# Build aplicația
-npm run build
-
-# Upload pe server
-rsync -avz --delete \
-  --exclude 'node_modules' \
-  --exclude '.git' \
-  --exclude '.github' \
-  --exclude '.next/cache' \
-  ./ root@64.225.49.128:/var/www/orex.site/
-
-# Restart pe server
+# Deployment direct cu git pull pe server
 ssh root@64.225.49.128 "
   cd /var/www/orex.site &&
+  git pull origin main &&
   npm ci --only=production &&
   npm run build &&
   pm2 restart orex-site || pm2 start npm --name orex-site -- start

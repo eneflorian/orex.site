@@ -33,8 +33,8 @@ jobs:
     - name: Deploy to orex.site
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
       run: |
-        # Install rsync if not available
-        sudo apt-get update && sudo apt-get install -y rsync sshpass
+        # Install sshpass if not available
+        sudo apt-get update && sudo apt-get install -y sshpass
         
         # Create SSH directory
         mkdir -p ~/.ssh
@@ -42,17 +42,10 @@ jobs:
         # Add server to known hosts
         ssh-keyscan -H 64.225.49.128 >> ~/.ssh/known_hosts
         
-        # Deploy files using rsync
-        sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz --delete \
-          --exclude 'node_modules' \
-          --exclude '.git' \
-          --exclude '.github' \
-          --exclude '.next/cache' \
-          ./ root@64.225.49.128:/var/www/orex.site/
-        
-        # Restart application on server
+        # Deploy using git pull on server
         sshpass -p "${{ secrets.SERVER_PASSWORD }}" ssh root@64.225.49.128 "
           cd /var/www/orex.site &&
+          git pull origin main &&
           npm ci --only=production &&
           npm run build &&
           pm2 restart orex-site || pm2 start npm --name orex-site -- start

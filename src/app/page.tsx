@@ -65,8 +65,8 @@ export default function Home() {
           <span>Next.js 14 + TypeScript</span>
         </div>
         <div className="flex items-center gap-2">
-          <span>🎨</span>
-          <span>Background albastru nou!</span>
+          <span>🚀</span>
+          <span>Git pull deployment activ!</span>
         </div>
       </footer>
     </div>

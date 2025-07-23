@@ -13,24 +13,11 @@ SERVER_USER="root"
 SERVER_PATH="/var/www/orex.site"
 APP_NAME="orex-site"
 
-# Build the application
-echo "📦 Building application..."
-npm run build
-
-# Deploy files
-echo "📤 Deploying files to server..."
-rsync -avz --delete \
-  --exclude 'node_modules' \
-  --exclude '.git' \
-  --exclude '.github' \
-  --exclude '.next/cache' \
-  --exclude 'deploy.sh' \
-  ./ ${SERVER_USER}@${SERVER_HOST}:${SERVER_PATH}/
-
-# Install dependencies and restart on server
-echo "🔄 Installing dependencies and restarting application..."
+# Deploy using git pull on server
+echo "📤 Pulling latest changes on server..."
 ssh ${SERVER_USER}@${SERVER_HOST} "
   cd ${SERVER_PATH} &&
+  git pull origin main &&
   npm ci --only=production &&
   npm run build &&
   pm2 restart ${APP_NAME} || pm2 start npm --name ${APP_NAME} -- start
