@@ -30,6 +30,9 @@ export default function HallidayRomania() {
 
   return (
     <div className="halliday-site">
+      {/* Skip to content */}
+      <a href="#main" className="skip-link">Skip to content</a>
+
       {/* Header */}
       <header className="header">
         <div className="container">
@@ -38,143 +41,146 @@ export default function HallidayRomania() {
               <span>Halliday</span>
             </div>
             <nav className="nav">
-              <a href="#how-it-works">Cum Funcționează</a>
-              <a href="#order-now" onClick={() => setShowOrderForm(true)}>Comandă Acum</a>
-              <a href="#about">Despre Halliday</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#order-now" onClick={() => setShowOrderForm(true)}>Order Now</a>
+              <a href="#about">About Halliday</a>
             </nav>
             <div className="header-actions">
-              <button className="login-btn">Intră în cont</button>
+              <button className="login-btn">Log in</button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="container">
-          <div className="hero-content">
-            <h1 className="hero-title">
-              Puterea Invizibilă pentru Viața Ta Zilnică
-            </h1>
-            <p className="hero-subtitle">
-              Ochelari ușori, în stil retro, cu display invizibil integrat. Halliday te conectează discret la informații și inteligență nelimitată, fără să ratezi niciun moment.
-            </p>
-            <div className="hero-buttons">
-              <button className="btn-how-it-works">Cum Funcționează</button>
-              <button className="btn-order-now" onClick={() => setShowOrderForm(true)}>
-                Comandă Acum
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission Section */}
-      <section className="mission">
-        <div className="container">
-          <div className="mission-content">
-            <h2 className="mission-title">Misiunea Zilnică<br />Aliatul Tău Invizibil</h2>
-            <div className="mission-description">
-              <h3>Inteligența Nu A Arătat Niciodată Atât de Natural.</h3>
-              <p>
-                Halliday începe cu ceea ce contează cel mai mult: confortul și stilul. Cântărind doar 28,5 grame, este la fel de ușor de purtat ca ramele tale favorite și durează până la 12 ore. Fiecare pereche include lentile cu dioptrii gratuite—fără compromisuri între vedere, modă și inteligență.
+      {/* Main Content */}
+      <main id="main">
+        {/* Hero Section */}
+        <section className="hero">
+          <div className="container">
+            <div className="hero-content">
+              <h1 className="hero-title">
+                Invisible Superpowers for Your Daily Life
+              </h1>
+              <p className="hero-subtitle">
+                Lightweight, retro-styled glasses with a hidden near-eye display, Halliday Glasses connect you to unlimited information and intelligence discreetly, without missing a beat.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interaction Section */}
-      <section className="interaction">
-        <div className="container">
-          <div className="interaction-content">
-            <h2 className="interaction-title">Interacțiune Fără Efort, Control Redefinit.</h2>
-            <div className="interaction-description">
-              <p>
-                Control, redefinit prin intuiție. Alături de Control-ul din Tâmplă, Inelul cu Trackpad aduce gesturile tactile la îndemâna ta—subtile, fluide și mereu la îndemână.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Secret Power Section */}
-      <section className="secret-power">
-        <div className="container">
-          <div className="secret-power-content">
-            <h2 className="secret-power-title">Putere Secretă, Eliberată Fără Efort.</h2>
-            <div className="secret-power-description">
-              <p>
-                Halliday se integrează perfect în viața ta, deblochând în tăcere o lume de inteligență prin diverse funcții AI. Gândește alături de tine, oferind îndrumare și suport subtil fără zgomot, frecare sau spectacol. Nu este despre a arăta puterea—este despre a o poseda.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Insights Section */}
-      <section className="insights">
-        <div className="container">
-          <div className="insights-content">
-            <h2 className="insights-title">Perspective la o Privire, Chiar În Fața Ochilor Tăi.</h2>
-            <div className="insights-description">
-              <p>
-                Prin simpla privire în sus, Halliday oferă acces la inteligență nesfârșită. Un display ascuns oferă perspective în timp real, îndrumare și suport, toate fără a întrerupe fluxul tău. Este acolo—fluid, silențios și mereu în vedere.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* All Day Section */}
-      <section className="all-day">
-        <div className="container">
-          <div className="all-day-content">
-            <h2 className="all-day-title">Companionul de Toată Ziua pentru o Viață Fluidă.</h2>
-            <div className="all-day-description">
-              <p>
-                De dimineață până seara, ochelarii și inelele Halliday funcționează fără efort cu ziua ta—făcând fiecare moment mai ușor. Fie că închei afaceri, urmezi cursuri, ții discursuri, călătorești sau îți gestionezi programul, Halliday servește drept suportul silențios care se mișcă cu tine.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="stats">
-        <div className="container">
-          <div className="stats-content">
-            <h2 className="stats-title">Cei Mai Vânduți Ochelari AI/AR<br />pe Kickstarter/Indiegogo</h2>
-            <div className="stats-grid">
-              <div className="stat-item">
-                <div className="stat-number">$2,125,324</div>
-                <div className="stat-label">O piatră de hotar în<br />inovația ochelarilor AI</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">2,364</div>
-                <div className="stat-label">Susținători<br />O comunitate remarcabilă<br />a adus această viziune la viață</div>
+              <div className="hero-buttons">
+                <button className="btn-how-it-works">How It Works</button>
+                <button className="btn-order-now" onClick={() => setShowOrderForm(true)}>
+                  Order Now
+                </button>
               </div>
             </div>
-            <div className="stats-subtitle">Cei Mai Populari<br />Ochelari AI/AR la CES 2025</div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Ready Section */}
-      <section className="ready">
-        <div className="container">
-          <div className="ready-content">
-            <h2 className="ready-title">Gata pentru ce urmează?</h2>
-            <div className="newsletter">
-              <input type="email" placeholder="Email" className="newsletter-input" />
-              <button className="newsletter-btn">Abonează-te</button>
+        {/* Mission Section */}
+        <section className="mission">
+          <div className="container">
+            <div className="mission-content">
+              <h2 className="section-label">The Everyday Mission<br />Your Invisible Ally</h2>
+              <h3 className="mission-title">Smart Has Never Looked This Natural.</h3>
+              <div className="mission-description">
+                <p>
+                  Halliday starts with what matters most: comfort and style. Weighing just 28.5 grams, it&apos;s as wearable as your favorite frames and lasts up to 12 hours. Each pair includes free prescription lenses—with no trade-off among vision, fashion, and intelligence.
+                </p>
+              </div>
             </div>
-            <p className="newsletter-text">
-              Rămâi la curent cu cele mai recente știri, perspective și anunțuri de la Halliday.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Interaction Section */}
+        <section className="interaction">
+          <div className="container">
+            <div className="interaction-content">
+              <h3 className="interaction-title">Effortless Interaction, Control Redefined.</h3>
+              <div className="interaction-description">
+                <p>
+                  Control, redefined by intuition. Alongside our Temple Control, the Trackpad Ring brings touch-based gestures to your fingertips—subtle, seamless, and always within reach.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Secret Power Section */}
+        <section className="secret-power">
+          <div className="container">
+            <div className="secret-power-content">
+              <h3 className="secret-power-title">Secret Power, Effortlessly Unleashed.</h3>
+              <div className="secret-power-description">
+                <p>
+                  Halliday seamlessly integrates into your life while quietly unlocking a world of intelligence through various AI functions. It thinks alongside you, providing subtle guidance and support without noise, friction, or spectacle. It&apos;s not about showing power—it&apos;s about possessing it.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Insights Section */}
+        <section className="insights">
+          <div className="container">
+            <div className="insights-content">
+              <h3 className="insights-title">Insights at a Glance, Right Before Your Eyes.</h3>
+              <div className="insights-description">
+                <p>
+                  By simply glancing up, Halliday provides access to endless intelligence. A hidden display offers real-time insights, guidance, and support, all without disrupting your flow. It&apos;s there—seamless, silent, and always in sight.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* All Day Section */}
+        <section className="all-day">
+          <div className="container">
+            <div className="all-day-content">
+              <h3 className="all-day-title">All-Day Companion for a Seamless Life.</h3>
+              <div className="all-day-description">
+                <p>
+                  From morning to night, Halliday&apos;s glasses and rings work effortlessly with your day—making each moment easier. Whether you&apos;re closing deals, taking classes, giving speeches, traveling, or managing your schedule, Halliday serves as the quiet support that moves with you.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="stats">
+          <div className="container">
+            <div className="stats-content">
+              <h2 className="stats-title">Best Selling AI/AR Glasses<br />on Kickstarter/Indiegogo</h2>
+              <div className="stats-grid">
+                <div className="stat-item">
+                  <div className="stat-number">$2,125,324</div>
+                  <div className="stat-label">A milestone in<br />AI eyewear innovation</div>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-number">2,364</div>
+                  <div className="stat-label">Backers<br />A remarkable community<br />brought this vision to life</div>
+                </div>
+              </div>
+              <div className="stats-subtitle">The Most Popular<br />AI/AR Glasses at CES 2025</div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="newsletter-section">
+          <div className="container">
+            <div className="newsletter-content">
+              <h2 className="newsletter-title">Ready for what&apos;s next?</h2>
+              <div className="newsletter">
+                <input type="email" placeholder="Email" className="newsletter-input" />
+                <button className="newsletter-btn">Subscribe</button>
+              </div>
+              <p className="newsletter-text">
+                Stay updated with the latest news, insights, and announcements from Halliday.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
 
       {/* Order Form Modal */}
       {showOrderForm && (
@@ -274,16 +280,16 @@ export default function HallidayRomania() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-links">
-              <a href="#terms">Termeni de Serviciu</a>
-              <a href="#shipping">Politica de Livrare</a>
-              <a href="#warranty">Politica de Garanție</a>
-              <a href="#returns">Politica de Returnare</a>
-              <a href="#privacy">Politica de Confidențialitate</a>
-              <span>Contact: support@halliday.ro</span>
+              <a href="#terms">Terms of Service</a>
+              <a href="#shipping">Shipping Policy</a>
+              <a href="#warranty">Warranty Policy</a>
+              <a href="#returns">Return&Refund Policy</a>
+              <a href="#privacy">Privacy Policy</a>
+              <span>Contact Us: support@halliday.ro</span>
             </div>
             <div className="footer-sections">
               <div className="footer-section">
-                <h4>Despre Noi</h4>
+                <h4>About Us</h4>
                 <a href="#faq">FAQ</a>
               </div>
             </div>

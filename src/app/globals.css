@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Exact Halliday Global Design Recreation */
+/* Perfect Halliday Global Recreation */
 * {
   margin: 0;
   padding: 0;
@@ -10,70 +10,93 @@
 }
 
 :root {
-  --color-primary: #000000;
-  --color-secondary: #666666;
-  --color-light-gray: #999999;
-  --color-bg: #ffffff;
-  --color-border: #e0e0e0;
+  --color-black: #000000;
+  --color-gray-600: #4b5563;
+  --color-gray-500: #6b7280;
+  --color-gray-400: #9ca3af;
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-border: #e5e7eb;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.6;
-  color: var(--color-primary);
-  background: var(--color-bg);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-black);
+  background: var(--color-white);
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .halliday-site {
   min-height: 100vh;
 }
 
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 8px;
+  z-index: 1000;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
 /* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
-/* Header - Exact match to original */
+/* Header - Exact match */
 .header {
   border-bottom: 1px solid var(--color-border);
-  background: white;
+  background: var(--color-white);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 50;
 }
 
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 70px;
+  height: 72px;
 }
 
 .logo span {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-black);
   text-decoration: none;
 }
 
 .nav {
   display: flex;
-  gap: 40px;
+  gap: 32px;
 }
 
 .nav a {
-  color: var(--color-primary);
+  color: var(--color-black);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .nav a:hover {
-  color: var(--color-secondary);
+  color: var(--color-gray-600);
 }
 
 .header-actions {
@@ -84,41 +107,47 @@ body {
 .login-btn {
   background: none;
   border: none;
-  color: var(--color-primary);
-  font-size: 16px;
+  color: var(--color-black);
+  font-size: 14px;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px 12px;
+  transition: color 0.2s ease;
 }
 
 .login-btn:hover {
-  color: var(--color-secondary);
+  color: var(--color-gray-600);
 }
 
-/* Hero Section - Exact spacing and typography */
+/* Main content */
+main {
+  flex: 1;
+}
+
+/* Hero Section - Perfect spacing */
 .hero {
-  padding: 120px 0 80px;
+  padding: 80px 0;
   text-align: center;
 }
 
 .hero-content {
-  max-width: 800px;
+  max-width: 768px;
   margin: 0 auto;
 }
 
 .hero-title {
-  font-size: 64px;
-  font-weight: 800;
+  font-size: 56px;
+  font-weight: 700;
   line-height: 1.1;
-  color: var(--color-primary);
-  margin-bottom: 32px;
-  letter-spacing: -0.02em;
+  color: var(--color-black);
+  margin-bottom: 24px;
+  letter-spacing: -0.025em;
 }
 
 .hero-subtitle {
-  font-size: 20px;
-  line-height: 1.5;
-  color: var(--color-secondary);
-  margin-bottom: 48px;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-gray-600);
+  margin-bottom: 40px;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
@@ -126,47 +155,47 @@ body {
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   justify-content: center;
   align-items: center;
 }
 
 .btn-how-it-works,
 .btn-order-now {
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 12px 20px;
+  font-size: 14px;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid var(--color-border);
-  background: white;
-  color: var(--color-primary);
   text-decoration: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  color: var(--color-black);
 }
 
 .btn-order-now {
-  background: var(--color-primary);
-  color: white;
-  border-color: var(--color-primary);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
 }
 
 .btn-how-it-works:hover {
-  border-color: var(--color-primary);
+  border-color: var(--color-black);
 }
 
 .btn-order-now:hover {
-  background: var(--color-secondary);
-  border-color: var(--color-secondary);
+  background: var(--color-gray-600);
+  border-color: var(--color-gray-600);
 }
 
-/* Content Sections - Clean spacing like original */
+/* Content Sections */
 .mission,
 .interaction,
 .secret-power,
 .insights,
 .all-day {
-  padding: 100px 0;
+  padding: 80px 0;
   text-align: center;
 }
 
@@ -175,8 +204,17 @@ body {
 .secret-power-content,
 .insights-content,
 .all-day-content {
-  max-width: 900px;
+  max-width: 768px;
   margin: 0 auto;
+}
+
+.section-label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-gray-500);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .mission-title,
@@ -184,19 +222,12 @@ body {
 .secret-power-title,
 .insights-title,
 .all-day-title {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-primary);
-  margin-bottom: 40px;
-  letter-spacing: -0.02em;
-}
-
-.mission-description h3 {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-black);
   margin-bottom: 24px;
+  letter-spacing: -0.025em;
 }
 
 .mission-description p,
@@ -204,41 +235,41 @@ body {
 .secret-power-description p,
 .insights-description p,
 .all-day-description p {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.6;
-  color: var(--color-secondary);
-  max-width: 700px;
+  color: var(--color-gray-600);
+  max-width: 640px;
   margin: 0 auto;
 }
 
-/* Alternating background sections */
+/* Alternating backgrounds */
 .interaction,
 .insights {
-  background: #fafafa;
+  background: var(--color-gray-50);
 }
 
 /* Stats Section */
 .stats {
-  padding: 100px 0;
+  padding: 80px 0;
   text-align: center;
-  background: #fafafa;
+  background: var(--color-gray-50);
 }
 
 .stats-title {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-primary);
-  margin-bottom: 60px;
-  letter-spacing: -0.02em;
+  color: var(--color-black);
+  margin-bottom: 48px;
+  letter-spacing: -0.025em;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  max-width: 800px;
-  margin: 0 auto 40px;
+  gap: 64px;
+  max-width: 640px;
+  margin: 0 auto 32px;
 }
 
 .stat-item {
@@ -246,82 +277,85 @@ body {
 }
 
 .stat-number {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-black);
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .stat-label {
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.4;
-  color: var(--color-secondary);
+  color: var(--color-gray-600);
 }
 
 .stats-subtitle {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  color: var(--color-primary);
-  margin-top: 40px;
+  color: var(--color-black);
+  margin-top: 32px;
 }
 
-/* Ready Section */
-.ready {
-  padding: 100px 0;
+/* Newsletter Section */
+.newsletter-section {
+  padding: 80px 0;
   text-align: center;
 }
 
-.ready-title {
-  font-size: 48px;
+.newsletter-title {
+  font-size: 40px;
   font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 40px;
-  letter-spacing: -0.02em;
+  color: var(--color-black);
+  margin-bottom: 32px;
+  letter-spacing: -0.025em;
 }
 
 .newsletter {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   justify-content: center;
-  margin-bottom: 24px;
-  max-width: 400px;
+  margin-bottom: 16px;
+  max-width: 320px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .newsletter-input {
   flex: 1;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 4px;
+  font-size: 14px;
   outline: none;
 }
 
 .newsletter-input:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-black);
 }
 
 .newsletter-btn {
-  padding: 12px 24px;
-  background: var(--color-primary);
-  color: white;
+  padding: 10px 16px;
+  background: var(--color-black);
+  color: var(--color-white);
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 4px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .newsletter-btn:hover {
-  background: var(--color-secondary);
+  background: var(--color-gray-600);
 }
 
 .newsletter-text {
-  font-size: 14px;
-  color: var(--color-light-gray);
-  line-height: 1.5;
+  font-size: 12px;
+  color: var(--color-gray-500);
+  line-height: 1.4;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 /* Modal */
@@ -340,9 +374,9 @@ body {
 }
 
 .modal {
-  background: white;
+  background: var(--color-white);
   border-radius: 8px;
-  max-width: 500px;
+  max-width: 480px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
@@ -352,89 +386,92 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 24px 16px;
+  padding: 20px 20px 16px;
   border-bottom: 1px solid var(--color-border);
 }
 
 .modal-header h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .close-btn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   cursor: pointer;
-  color: var(--color-secondary);
+  color: var(--color-gray-500);
   padding: 4px;
+  transition: color 0.2s ease;
 }
 
 .close-btn:hover {
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 /* Order Form */
 .order-form {
-  padding: 24px;
+  padding: 20px;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 6px;
-  font-size: 14px;
+  margin-bottom: 4px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .form-group input,
 .form-group select {
   width: 100%;
-  padding: 12px 16px;
+  padding: 10px 12px;
   border: 1px solid var(--color-border);
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 4px;
+  font-size: 14px;
   outline: none;
+  transition: border-color 0.2s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
-  border-color: var(--color-primary);
+  border-color: var(--color-black);
 }
 
 .btn-submit-order {
   width: 100%;
-  padding: 16px;
-  background: var(--color-primary);
-  color: white;
+  padding: 12px;
+  background: var(--color-black);
+  color: var(--color-white);
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: 4px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 24px;
+  margin-top: 16px;
+  transition: background 0.2s ease;
 }
 
 .btn-submit-order:hover {
-  background: var(--color-secondary);
+  background: var(--color-gray-600);
 }
 
-/* Footer - Clean like original */
+/* Footer */
 .footer {
   border-top: 1px solid var(--color-border);
-  padding: 60px 0 40px;
-  background: white;
+  padding: 48px 0 32px;
+  background: var(--color-white);
 }
 
 .footer-content {
@@ -442,62 +479,65 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 32px;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   flex: 1;
 }
 
 .footer-links a,
 .footer-links span {
-  color: var(--color-secondary);
+  color: var(--color-gray-500);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .footer-sections {
   display: flex;
-  gap: 40px;
+  gap: 32px;
 }
 
 .footer-section h4 {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: 8px;
+  color: var(--color-black);
+  margin-bottom: 4px;
 }
 
 .footer-section a {
-  color: var(--color-secondary);
+  color: var(--color-gray-500);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  transition: color 0.2s ease;
 }
 
 .footer-section a:hover {
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 .footer-social {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
 .footer-social a {
-  color: var(--color-secondary);
+  color: var(--color-gray-500);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 12px;
+  transition: color 0.2s ease;
 }
 
 .footer-social a:hover {
-  color: var(--color-primary);
+  color: var(--color-black);
 }
 
 /* Responsive Design */
@@ -507,7 +547,7 @@ body {
   }
   
   .header-content {
-    height: 60px;
+    height: 64px;
   }
   
   .nav {
@@ -515,21 +555,21 @@ body {
   }
   
   .hero {
-    padding: 80px 0 60px;
+    padding: 64px 0;
   }
   
   .hero-title {
-    font-size: 40px;
+    font-size: 36px;
   }
   
   .hero-subtitle {
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .hero-buttons {
     flex-direction: column;
     align-items: stretch;
-    max-width: 300px;
+    max-width: 280px;
     margin: 0 auto;
   }
   
@@ -539,8 +579,8 @@ body {
   .insights,
   .all-day,
   .stats,
-  .ready {
-    padding: 60px 0;
+  .newsletter-section {
+    padding: 64px 0;
   }
   
   .mission-title,
@@ -549,18 +589,18 @@ body {
   .insights-title,
   .all-day-title,
   .stats-title,
-  .ready-title {
-    font-size: 32px;
+  .newsletter-title {
+    font-size: 28px;
   }
   
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
   
   .newsletter {
     flex-direction: column;
-    max-width: 300px;
+    max-width: 280px;
   }
   
   .form-row {
@@ -582,5 +622,21 @@ body {
   
   .footer-social {
     justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 32px;
+  }
+  
+  .mission-title,
+  .interaction-title,
+  .secret-power-title,
+  .insights-title,
+  .all-day-title,
+  .stats-title,
+  .newsletter-title {
+    font-size: 24px;
   }
 }
