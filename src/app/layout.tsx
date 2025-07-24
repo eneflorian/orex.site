@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "OLX Monitor - Mobile App",
-  description: "Aplicație mobilă pentru monitorizarea anunțurilor OLX. Găsește rapid cele mai bune oferte cu interfață optimizată pentru telefon.",
+  title: "Halliday.ro - Ochelari AI Inteligenti | Distribuitor Oficial România",
+  description: "Cumpără ochelarii AI Halliday cu display invizibil în România. Tehnologie revoluționară cu inteligență artificială, control tactil și baterie de 12 ore. Comandă acum!",
 };
 
 export const viewport = {
