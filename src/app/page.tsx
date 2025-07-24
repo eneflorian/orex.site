@@ -4,6 +4,10 @@ import React, { useState } from 'react';
 
 export default function HallidayRomania() {
   const [showOrderForm, setShowOrderForm] = useState(false);
+  const [showCountrySelector, setShowCountrySelector] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState('România | LEI');
+  const [cartCount, setCartCount] = useState(0);
+  const [showCart, setShowCart] = useState(false);
   const [orderData, setOrderData] = useState({
     nume: '',
     email: '',
@@ -15,6 +19,11 @@ export default function HallidayRomania() {
     cantitate: 1
   });
 
+  const countries = [
+    'România | LEI', 'United States | USD $', 'Germany | USD $', 'France | USD $', 
+    'United Kingdom | USD $', 'Italy | USD $', 'Spain | USD $', 'Australia | USD $'
+  ];
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setOrderData({
       ...orderData,
@@ -24,8 +33,14 @@ export default function HallidayRomania() {
 
   const handleOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Comandă plasată cu succes pentru ${orderData.nume}! Veți fi contactat în curând.`);
+    setCartCount(cartCount + 1);
+    alert(`Produs adăugat în coș! ${orderData.nume}, vă mulțumim.`);
     setShowOrderForm(false);
+  };
+
+  const addToCart = () => {
+    setCartCount(cartCount + 1);
+    setShowOrderForm(true);
   };
 
   return (
@@ -37,16 +52,47 @@ export default function HallidayRomania() {
       <header className="header">
         <div className="container">
           <div className="header-content">
-            <div className="logo">
-              <span>Halliday</span>
+            <div className="header-left">
+              <div className="logo">
+                <span>Halliday</span>
+              </div>
+              <nav className="nav">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#order-now" onClick={() => setShowOrderForm(true)}>Order Now</a>
+                <a href="#about">About Halliday</a>
+              </nav>
             </div>
-            <nav className="nav">
-              <a href="#how-it-works">How It Works</a>
-              <a href="#order-now" onClick={() => setShowOrderForm(true)}>Order Now</a>
-              <a href="#about">About Halliday</a>
-            </nav>
-            <div className="header-actions">
+            <div className="header-right">
               <button className="login-btn">Log in</button>
+              <div className="country-selector">
+                <button 
+                  className="country-btn" 
+                  onClick={() => setShowCountrySelector(!showCountrySelector)}
+                >
+                  Country/region<br />
+                  <span>{selectedCountry}</span>
+                </button>
+                {showCountrySelector && (
+                  <div className="country-dropdown">
+                    {countries.map((country) => (
+                      <button
+                        key={country}
+                        onClick={() => {
+                          setSelectedCountry(country);
+                          setShowCountrySelector(false);
+                        }}
+                        className="country-option"
+                      >
+                        {country}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <button className="search-btn">Search</button>
+              <button className="cart-btn" onClick={() => setShowCart(true)}>
+                Cart {cartCount > 0 && <span className="cart-count">({cartCount})</span>}
+              </button>
             </div>
           </div>
         </div>
@@ -54,10 +100,13 @@ export default function HallidayRomania() {
 
       {/* Main Content */}
       <main id="main">
-        {/* Hero Section */}
+        {/* Hero Section with Buy Now */}
         <section className="hero">
           <div className="container">
             <div className="hero-content">
+              <div className="hero-actions-top">
+                <button className="btn-buy-now" onClick={addToCart}>Buy Now</button>
+              </div>
               <h1 className="hero-title">
                 Invisible Superpowers for Your Daily Life
               </h1>
@@ -145,6 +194,36 @@ export default function HallidayRomania() {
           </div>
         </section>
 
+        {/* First Reactions Video Section */}
+        <section className="video-section">
+          <div className="container">
+            <div className="video-content">
+              <h2 className="video-title">First Reactions:<br />Halliday Hits the Streets</h2>
+              <div className="video-placeholder">
+                <div className="play-button">▶</div>
+                <p>Video: Real people trying Halliday AI glasses for the first time</p>
+              </div>
+              <button className="btn-learn-more">Learn More</button>
+            </div>
+          </div>
+        </section>
+
+        {/* Halliday Moments Visual Gallery */}
+        <section className="moments-gallery">
+          <div className="container">
+            <h2 className="gallery-title">Halliday Moments Captured</h2>
+            <div className="moments-grid">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                <div key={item} className="moment-card">
+                  <div className="moment-image">
+                    <span>Halliday</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Stats Section */}
         <section className="stats">
           <div className="container">
@@ -165,6 +244,49 @@ export default function HallidayRomania() {
           </div>
         </section>
 
+        {/* Testimonials Section */}
+        <section className="testimonials">
+          <div className="container">
+            <div className="testimonials-content">
+              <h2 className="testimonials-title">Real Tech. Real Takes.</h2>
+              <div className="testimonial-quote">
+                <p>&quot;One of the things that stood out to me is that it just looks normal, which understands design and looks extremely lightweight.&quot;</p>
+                <div className="testimonial-authors">
+                  <span>Jon Rettinger</span>
+                  <span>ben&apos;s gadget review</span>
+                  <span>Juanbagnell</span>
+                </div>
+                <div className="brand-mentions">
+                  <span>halliday halliday halliday</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Headlines Section */}
+        <section className="headlines">
+          <div className="container">
+            <div className="headlines-content">
+              <h2 className="headlines-title">Halliday in the Headlines</h2>
+              <div className="headlines-grid">
+                <div className="headline-item">
+                  <p>&quot;Halliday&apos;s new AI glasses are what Meta, Google, and Apple have been trying to build.&quot;</p>
+                  <span>-ZDNET</span>
+                </div>
+                <div className="headline-item">
+                  <p>&quot;Halliday makes the best use of AI I&apos;ve seen so far-quick, contextual, and actually useful in real conversations.&quot;</p>
+                  <span>-CNET</span>
+                </div>
+                <div className="headline-item">
+                  <p>&quot;I just went hands-on with these breakthrough smart glasses with an invisible display-and I&apos;m shocked.&quot;</p>
+                  <span>-tom&apos;s guide</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Newsletter Section */}
         <section className="newsletter-section">
           <div className="container">
@@ -181,6 +303,30 @@ export default function HallidayRomania() {
           </div>
         </section>
       </main>
+
+      {/* Cart Modal */}
+      {showCart && (
+        <div className="modal-overlay" onClick={() => setShowCart(false)}>
+          <div className="cart-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="cart-header">
+              <h3>Cart ({cartCount})</h3>
+              <button className="close-btn" onClick={() => setShowCart(false)}>×</button>
+            </div>
+            <div className="cart-content">
+              {cartCount === 0 ? (
+                <p>Your cart is empty.</p>
+              ) : (
+                <div className="cart-items">
+                  <p>{cartCount} item(s) in cart</p>
+                  <button className="btn-checkout" onClick={() => setShowOrderForm(true)}>
+                    Checkout
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Order Form Modal */}
       {showOrderForm && (
@@ -268,7 +414,7 @@ export default function HallidayRomania() {
                 </div>
               </div>
               <button type="submit" className="btn-submit-order">
-                Plasează Comanda
+                Add to Cart
               </button>
             </form>
           </div>

@@ -58,7 +58,7 @@ body {
   padding: 0 24px;
 }
 
-/* Header - Exact match */
+/* Header - Exact match with cart functionality */
 .header {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-white);
@@ -72,6 +72,18 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 72px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .logo span {
@@ -99,12 +111,9 @@ body {
   color: var(--color-gray-600);
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-}
-
-.login-btn {
+.login-btn,
+.search-btn,
+.cart-btn {
   background: none;
   border: none;
   color: var(--color-black);
@@ -114,8 +123,64 @@ body {
   transition: color 0.2s ease;
 }
 
-.login-btn:hover {
+.login-btn:hover,
+.search-btn:hover,
+.cart-btn:hover {
   color: var(--color-gray-600);
+}
+
+.cart-count {
+  font-size: 12px;
+}
+
+/* Country Selector */
+.country-selector {
+  position: relative;
+}
+
+.country-btn {
+  background: none;
+  border: none;
+  color: var(--color-black);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 8px 12px;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.country-btn span {
+  font-weight: 500;
+}
+
+.country-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.country-option {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.country-option:hover {
+  background: var(--color-gray-50);
 }
 
 /* Main content */
@@ -123,15 +188,39 @@ main {
   flex: 1;
 }
 
-/* Hero Section - Perfect spacing */
+/* Hero Section with Buy Now */
 .hero {
-  padding: 80px 0;
+  padding: 40px 0 80px;
   text-align: center;
+  position: relative;
+}
+
+.hero-actions-top {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.btn-buy-now {
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-buy-now:hover {
+  background: var(--color-gray-600);
 }
 
 .hero-content {
   max-width: 768px;
   margin: 0 auto;
+  padding-top: 40px;
 }
 
 .hero-title {
@@ -248,6 +337,97 @@ main {
   background: var(--color-gray-50);
 }
 
+/* Video Section */
+.video-section {
+  padding: 80px 0;
+  text-align: center;
+  background: var(--color-gray-50);
+}
+
+.video-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 32px;
+  letter-spacing: -0.025em;
+}
+
+.video-placeholder {
+  background: var(--color-gray-100);
+  border-radius: 8px;
+  padding: 80px 40px;
+  margin-bottom: 24px;
+  position: relative;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.play-button {
+  font-size: 48px;
+  color: var(--color-black);
+  margin-bottom: 16px;
+}
+
+.btn-learn-more {
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-learn-more:hover {
+  background: var(--color-gray-600);
+}
+
+/* Moments Gallery */
+.moments-gallery {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.gallery-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 48px;
+  letter-spacing: -0.025em;
+}
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.moment-card {
+  aspect-ratio: 1;
+  background: var(--color-gray-100);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.moment-card:hover {
+  transform: scale(1.05);
+}
+
+.moment-image span {
+  font-size: 12px;
+  color: var(--color-gray-500);
+  font-weight: 500;
+}
+
 /* Stats Section */
 .stats {
   padding: 80px 0;
@@ -295,6 +475,93 @@ main {
   font-weight: 600;
   color: var(--color-black);
   margin-top: 32px;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.testimonials-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 32px;
+  letter-spacing: -0.025em;
+}
+
+.testimonial-quote {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.testimonial-quote p {
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--color-black);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.testimonial-authors {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.testimonial-authors span {
+  font-size: 14px;
+  color: var(--color-gray-600);
+}
+
+.brand-mentions span {
+  font-size: 12px;
+  color: var(--color-gray-400);
+  text-transform: lowercase;
+}
+
+/* Headlines Section */
+.headlines {
+  padding: 80px 0;
+  text-align: center;
+  background: var(--color-gray-50);
+}
+
+.headlines-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 48px;
+  letter-spacing: -0.025em;
+}
+
+.headlines-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.headline-item {
+  text-align: center;
+}
+
+.headline-item p {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-black);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.headline-item span {
+  font-size: 14px;
+  color: var(--color-gray-600);
+  font-weight: 500;
 }
 
 /* Newsletter Section */
@@ -373,7 +640,8 @@ main {
   padding: 20px;
 }
 
-.modal {
+.modal,
+.cart-modal {
   background: var(--color-white);
   border-radius: 8px;
   max-width: 480px;
@@ -382,7 +650,8 @@ main {
   overflow-y: auto;
 }
 
-.modal-header {
+.modal-header,
+.cart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -390,7 +659,8 @@ main {
   border-bottom: 1px solid var(--color-border);
 }
 
-.modal-header h3 {
+.modal-header h3,
+.cart-header h3 {
   font-size: 18px;
   font-weight: 600;
   color: var(--color-black);
@@ -408,6 +678,34 @@ main {
 
 .close-btn:hover {
   color: var(--color-black);
+}
+
+/* Cart Modal */
+.cart-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-checkout {
+  background: var(--color-black);
+  color: var(--color-white);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-checkout:hover {
+  background: var(--color-gray-600);
 }
 
 /* Order Form */
@@ -550,12 +848,25 @@ main {
     height: 64px;
   }
   
+  .header-left {
+    gap: 20px;
+  }
+  
   .nav {
     display: none;
   }
   
+  .header-right {
+    gap: 8px;
+  }
+  
   .hero {
     padding: 64px 0;
+  }
+  
+  .hero-actions-top {
+    position: static;
+    margin-bottom: 20px;
   }
   
   .hero-title {
@@ -579,7 +890,11 @@ main {
   .insights,
   .all-day,
   .stats,
-  .newsletter-section {
+  .newsletter-section,
+  .video-section,
+  .moments-gallery,
+  .testimonials,
+  .headlines {
     padding: 64px 0;
   }
   
@@ -589,13 +904,21 @@ main {
   .insights-title,
   .all-day-title,
   .stats-title,
-  .newsletter-title {
+  .newsletter-title,
+  .video-title,
+  .gallery-title,
+  .testimonials-title,
+  .headlines-title {
     font-size: 28px;
   }
   
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+  
+  .moments-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .newsletter {
@@ -636,7 +959,15 @@ main {
   .insights-title,
   .all-day-title,
   .stats-title,
-  .newsletter-title {
+  .newsletter-title,
+  .video-title,
+  .gallery-title,
+  .testimonials-title,
+  .headlines-title {
     font-size: 24px;
+  }
+  
+  .moments-grid {
+    grid-template-columns: 1fr;
   }
 }
