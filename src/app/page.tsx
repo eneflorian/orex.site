@@ -46,7 +46,7 @@ export default function HallidayRomania() {
   return (
     <div className="halliday-site">
       {/* Skip to content */}
-      <a href="#main" className="skip-link">Skip to content</a>
+      <a href="#main" className="skip-link">Sari la conținut</a>
 
       {/* Header */}
       <header className="header">
@@ -57,19 +57,19 @@ export default function HallidayRomania() {
                 <span>Halliday</span>
               </div>
               <nav className="nav">
-                <a href="#how-it-works">How It Works</a>
-                <a href="#order-now" onClick={() => setShowOrderForm(true)}>Order Now</a>
-                <a href="#about">About Halliday</a>
+                <a href="#how-it-works">Cum Funcționează</a>
+                <a href="#order-now" onClick={() => setShowOrderForm(true)}>Comandă Acum</a>
+                <a href="#about">Despre Halliday</a>
               </nav>
             </div>
             <div className="header-right">
-              <button className="login-btn">Log in</button>
+              <button className="login-btn">Intră în cont</button>
               <div className="country-selector">
                 <button 
                   className="country-btn" 
                   onClick={() => setShowCountrySelector(!showCountrySelector)}
                 >
-                  Country/region<br />
+                  Țară/Regiune<br />
                   <span>{selectedCountry}</span>
                 </button>
                 {showCountrySelector && (
@@ -89,9 +89,9 @@ export default function HallidayRomania() {
                   </div>
                 )}
               </div>
-              <button className="search-btn">Search</button>
+              <button className="search-btn">Caută</button>
               <button className="cart-btn" onClick={() => setShowCart(true)}>
-                Cart {cartCount > 0 && <span className="cart-count">({cartCount})</span>}
+                Coș {cartCount > 0 && <span className="cart-count">({cartCount})</span>}
               </button>
             </div>
           </div>
@@ -105,18 +105,18 @@ export default function HallidayRomania() {
           <div className="container">
             <div className="hero-content">
               <div className="hero-actions-top">
-                <button className="btn-buy-now" onClick={addToCart}>Buy Now</button>
+                <button className="btn-buy-now" onClick={addToCart}>Cumpără Acum</button>
               </div>
               <h1 className="hero-title">
-                Invisible Superpowers for Your Daily Life
+                Puteri Invizibile pentru Viața Ta Zilnică
               </h1>
               <p className="hero-subtitle">
-                Lightweight, retro-styled glasses with a hidden near-eye display, Halliday Glasses connect you to unlimited information and intelligence discreetly, without missing a beat.
+                Ochelari ușori, în stil retro, cu display ascuns integrat, Halliday te conectează discret la informații și inteligență nelimitată, fără să ratezi niciun moment.
               </p>
               <div className="hero-buttons">
-                <button className="btn-how-it-works">How It Works</button>
+                <button className="btn-how-it-works">Cum Funcționează</button>
                 <button className="btn-order-now" onClick={() => setShowOrderForm(true)}>
-                  Order Now
+                  Comandă Acum
                 </button>
               </div>
             </div>
@@ -127,11 +127,11 @@ export default function HallidayRomania() {
         <section className="mission">
           <div className="container">
             <div className="mission-content">
-              <h2 className="section-label">The Everyday Mission<br />Your Invisible Ally</h2>
-              <h3 className="mission-title">Smart Has Never Looked This Natural.</h3>
+              <h2 className="section-label">Misiunea Zilnică<br />Aliatul Tău Invizibil</h2>
+              <h3 className="mission-title">Inteligența Nu A Arătat Niciodată Atât de Natural.</h3>
               <div className="mission-description">
                 <p>
-                  Halliday starts with what matters most: comfort and style. Weighing just 28.5 grams, it&apos;s as wearable as your favorite frames and lasts up to 12 hours. Each pair includes free prescription lenses—with no trade-off among vision, fashion, and intelligence.
+                  Halliday începe cu ceea ce contează cel mai mult: confortul și stilul. Cântărind doar 28,5 grame, este la fel de ușor de purtat ca ramele tale favorite și durează până la 12 ore. Fiecare pereche include lentile cu dioptrii gratuite—fără compromisuri între vedere, modă și inteligență.
                 </p>
               </div>
             </div>
@@ -142,10 +142,10 @@ export default function HallidayRomania() {
         <section className="interaction">
           <div className="container">
             <div className="interaction-content">
-              <h3 className="interaction-title">Effortless Interaction, Control Redefined.</h3>
+              <h3 className="interaction-title">Interacțiune Fără Efort, Control Redefinit.</h3>
               <div className="interaction-description">
                 <p>
-                  Control, redefined by intuition. Alongside our Temple Control, the Trackpad Ring brings touch-based gestures to your fingertips—subtle, seamless, and always within reach.
+                  Control, redefinit prin intuiție. Alături de Controlul din Tâmplă, Inelul cu Trackpad aduce gesturile tactile la îndemâna ta—subtile, fluide și mereu la îndemână.
                 </p>
               </div>
             </div>
@@ -156,10 +156,10 @@ export default function HallidayRomania() {
         <section className="secret-power">
           <div className="container">
             <div className="secret-power-content">
-              <h3 className="secret-power-title">Secret Power, Effortlessly Unleashed.</h3>
+              <h3 className="secret-power-title">Putere Secretă, Eliberată Fără Efort.</h3>
               <div className="secret-power-description">
                 <p>
-                  Halliday seamlessly integrates into your life while quietly unlocking a world of intelligence through various AI functions. It thinks alongside you, providing subtle guidance and support without noise, friction, or spectacle. It&apos;s not about showing power—it&apos;s about possessing it.
+                  Halliday se integrează perfect în viața ta, deblochând în tăcere o lume de inteligență prin diverse funcții AI. Gândește alături de tine, oferind îndrumare și suport subtil fără zgomot, frecare sau spectacol. Nu este despre a arăta puterea—este despre a o poseda.
                 </p>
               </div>
             </div>
@@ -170,10 +170,10 @@ export default function HallidayRomania() {
         <section className="insights">
           <div className="container">
             <div className="insights-content">
-              <h3 className="insights-title">Insights at a Glance, Right Before Your Eyes.</h3>
+              <h3 className="insights-title">Perspective la o Privire, Chiar În Fața Ochilor Tăi.</h3>
               <div className="insights-description">
                 <p>
-                  By simply glancing up, Halliday provides access to endless intelligence. A hidden display offers real-time insights, guidance, and support, all without disrupting your flow. It&apos;s there—seamless, silent, and always in sight.
+                  Prin simpla privire în sus, Halliday oferă acces la inteligență nesfârșită. Un display ascuns oferă perspective în timp real, îndrumare și suport, toate fără a întrerupe fluxul tău. Este acolo—fluid, silențios și mereu în vedere.
                 </p>
               </div>
             </div>
@@ -184,10 +184,10 @@ export default function HallidayRomania() {
         <section className="all-day">
           <div className="container">
             <div className="all-day-content">
-              <h3 className="all-day-title">All-Day Companion for a Seamless Life.</h3>
+              <h3 className="all-day-title">Companionul de Toată Ziua pentru o Viață Fluidă.</h3>
               <div className="all-day-description">
                 <p>
-                  From morning to night, Halliday&apos;s glasses and rings work effortlessly with your day—making each moment easier. Whether you&apos;re closing deals, taking classes, giving speeches, traveling, or managing your schedule, Halliday serves as the quiet support that moves with you.
+                  De dimineață până seara, ochelarii și inelele Halliday funcționează fără efort cu ziua ta—făcând fiecare moment mai ușor. Fie că închei afaceri, urmezi cursuri, ții discursuri, călătorești sau îți gestionezi programul, Halliday servește drept suportul silențios care se mișcă cu tine.
                 </p>
               </div>
             </div>
@@ -198,12 +198,12 @@ export default function HallidayRomania() {
         <section className="video-section">
           <div className="container">
             <div className="video-content">
-              <h2 className="video-title">First Reactions:<br />Halliday Hits the Streets</h2>
+              <h2 className="video-title">Primele Reacții:<br />Halliday Pe Străzi</h2>
               <div className="video-placeholder">
                 <div className="play-button">▶</div>
-                <p>Video: Real people trying Halliday AI glasses for the first time</p>
+                <p>Video: Oameni reali încercând ochelarii AI Halliday pentru prima dată</p>
               </div>
-              <button className="btn-learn-more">Learn More</button>
+              <button className="btn-learn-more">Află Mai Multe</button>
             </div>
           </div>
         </section>
@@ -211,7 +211,7 @@ export default function HallidayRomania() {
         {/* Halliday Moments Visual Gallery */}
         <section className="moments-gallery">
           <div className="container">
-            <h2 className="gallery-title">Halliday Moments Captured</h2>
+            <h2 className="gallery-title">Momentele Halliday Capturate</h2>
             <div className="moments-grid">
               {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
                 <div key={item} className="moment-card">
@@ -228,18 +228,18 @@ export default function HallidayRomania() {
         <section className="stats">
           <div className="container">
             <div className="stats-content">
-              <h2 className="stats-title">Best Selling AI/AR Glasses<br />on Kickstarter/Indiegogo</h2>
+              <h2 className="stats-title">Cei Mai Vânduți Ochelari AI/AR<br />pe Kickstarter/Indiegogo</h2>
               <div className="stats-grid">
                 <div className="stat-item">
                   <div className="stat-number">$2,125,324</div>
-                  <div className="stat-label">A milestone in<br />AI eyewear innovation</div>
+                  <div className="stat-label">O piatră de hotar în<br />inovația ochelarilor AI</div>
                 </div>
                 <div className="stat-item">
                   <div className="stat-number">2,364</div>
-                  <div className="stat-label">Backers<br />A remarkable community<br />brought this vision to life</div>
+                  <div className="stat-label">Susținători<br />O comunitate remarcabilă<br />a adus această viziune la viață</div>
                 </div>
               </div>
-              <div className="stats-subtitle">The Most Popular<br />AI/AR Glasses at CES 2025</div>
+              <div className="stats-subtitle">Cei Mai Populari<br />Ochelari AI/AR la CES 2025</div>
             </div>
           </div>
         </section>
@@ -248,9 +248,9 @@ export default function HallidayRomania() {
         <section className="testimonials">
           <div className="container">
             <div className="testimonials-content">
-              <h2 className="testimonials-title">Real Tech. Real Takes.</h2>
+              <h2 className="testimonials-title">Tehnologie Reală. Păreri Reale.</h2>
               <div className="testimonial-quote">
-                <p>&quot;One of the things that stood out to me is that it just looks normal, which understands design and looks extremely lightweight.&quot;</p>
+                <p>&quot;Unul dintre lucrurile care m-a impresionat este că arată normal, înțelege designul și pare extrem de ușor.&quot;</p>
                 <div className="testimonial-authors">
                   <span>Jon Rettinger</span>
                   <span>ben&apos;s gadget review</span>
@@ -268,18 +268,18 @@ export default function HallidayRomania() {
         <section className="headlines">
           <div className="container">
             <div className="headlines-content">
-              <h2 className="headlines-title">Halliday in the Headlines</h2>
+              <h2 className="headlines-title">Halliday în Știri</h2>
               <div className="headlines-grid">
                 <div className="headline-item">
-                  <p>&quot;Halliday&apos;s new AI glasses are what Meta, Google, and Apple have been trying to build.&quot;</p>
+                  <p>&quot;Noii ochelari AI Halliday sunt ceea ce Meta, Google și Apple au încercat să construiască.&quot;</p>
                   <span>-ZDNET</span>
                 </div>
                 <div className="headline-item">
-                  <p>&quot;Halliday makes the best use of AI I&apos;ve seen so far-quick, contextual, and actually useful in real conversations.&quot;</p>
+                  <p>&quot;Halliday face cea mai bună utilizare a AI pe care am văzut-o până acum—rapidă, contextuală și cu adevărat utilă în conversații reale.&quot;</p>
                   <span>-CNET</span>
                 </div>
                 <div className="headline-item">
-                  <p>&quot;I just went hands-on with these breakthrough smart glasses with an invisible display-and I&apos;m shocked.&quot;</p>
+                  <p>&quot;Tocmai am testat acești ochelari smart revoluționari cu display invizibil—și sunt șocat.&quot;</p>
                   <span>-tom&apos;s guide</span>
                 </div>
               </div>
@@ -291,13 +291,13 @@ export default function HallidayRomania() {
         <section className="newsletter-section">
           <div className="container">
             <div className="newsletter-content">
-              <h2 className="newsletter-title">Ready for what&apos;s next?</h2>
+              <h2 className="newsletter-title">Gata pentru ce urmează?</h2>
               <div className="newsletter">
                 <input type="email" placeholder="Email" className="newsletter-input" />
-                <button className="newsletter-btn">Subscribe</button>
+                <button className="newsletter-btn">Abonează-te</button>
               </div>
               <p className="newsletter-text">
-                Stay updated with the latest news, insights, and announcements from Halliday.
+                Rămâi la curent cu cele mai recente știri, perspective și anunțuri de la Halliday.
               </p>
             </div>
           </div>
@@ -309,17 +309,17 @@ export default function HallidayRomania() {
         <div className="modal-overlay" onClick={() => setShowCart(false)}>
           <div className="cart-modal" onClick={(e) => e.stopPropagation()}>
             <div className="cart-header">
-              <h3>Cart ({cartCount})</h3>
+              <h3>Coș ({cartCount})</h3>
               <button className="close-btn" onClick={() => setShowCart(false)}>×</button>
             </div>
             <div className="cart-content">
               {cartCount === 0 ? (
-                <p>Your cart is empty.</p>
+                <p>Coșul tău este gol.</p>
               ) : (
                 <div className="cart-items">
-                  <p>{cartCount} item(s) in cart</p>
+                  <p>{cartCount} produs(e) în coș</p>
                   <button className="btn-checkout" onClick={() => setShowOrderForm(true)}>
-                    Checkout
+                    Finalizează Comanda
                   </button>
                 </div>
               )}
@@ -414,7 +414,7 @@ export default function HallidayRomania() {
                 </div>
               </div>
               <button type="submit" className="btn-submit-order">
-                Add to Cart
+                Adaugă în Coș
               </button>
             </form>
           </div>
@@ -426,17 +426,17 @@ export default function HallidayRomania() {
         <div className="container">
           <div className="footer-content">
             <div className="footer-links">
-              <a href="#terms">Terms of Service</a>
-              <a href="#shipping">Shipping Policy</a>
-              <a href="#warranty">Warranty Policy</a>
-              <a href="#returns">Return&Refund Policy</a>
-              <a href="#privacy">Privacy Policy</a>
-              <span>Contact Us: support@halliday.ro</span>
+              <a href="#terms">Termeni de Serviciu</a>
+              <a href="#shipping">Politica de Livrare</a>
+              <a href="#warranty">Politica de Garanție</a>
+              <a href="#returns">Politica de Returnare</a>
+              <a href="#privacy">Politica de Confidențialitate</a>
+              <span>Contact: support@halliday.ro</span>
             </div>
             <div className="footer-sections">
               <div className="footer-section">
-                <h4>About Us</h4>
-                <a href="#faq">FAQ</a>
+                <h4>Despre Noi</h4>
+                <a href="#faq">Întrebări Frecvente</a>
               </div>
             </div>
             <div className="footer-social">
