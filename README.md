@@ -1,107 +1,132 @@
-# Orex Next.js Application
+# Video Generator - Aplicație pentru generarea de video din poze
 
-Această aplicație Next.js 14 se deploiază automat pe **orex.site** când faci commit pe GitHub.
+O aplicație modernă Next.js pentru crearea de video-uri din imagini cu efecte și tranziții profesionale.
 
-## Tehnologii folosite
+## 🚀 Funcționalități
 
-- **Node.js**: 22.11+
-- **Next.js**: 14.2.30
-- **TypeScript**: Pentru type safety
-- **Tailwind CSS**: Pentru styling modern
-- **ESLint**: Pentru code quality
+- **Upload multiple imagini** - Suportă JPG, PNG, GIF, BMP, WebP
+- **Setări video personalizabile**:
+  - Durată per imagine (1-10 secunde)
+  - Tipuri de tranziție (fade, slide, zoom, fără)
+  - Calitate video (720p, 1080p, 4K)
+  - Frame rate (24, 30, 60 FPS)
+- **Previzualizare video** - Player integrat cu controale
+- **Descărcare directă** - Export MP4 de înaltă calitate
+- **Interfață modernă** - Design responsive cu Tailwind CSS
 
-## Dezvoltare locală
+## 🛠️ Tehnologii
+
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS
+- **Video Processing**: FFmpeg, fluent-ffmpeg
+- **File Upload**: React Dropzone
+- **Icons**: Lucide React
+
+## 📦 Instalare
 
 ```bash
-# Instalează dependințele
+# Clonează repository-ul
+git clone <repository-url>
+cd orex.site
+
+# Instalează dependențele
 npm install
 
-# Rulează serverul de dezvoltare
+# Rulează în modul development
 npm run dev
-
-# Construiește aplicația
-npm run build
-
-# Rulează aplicația în mod producție
-npm start
-
-# Verifică codul
-npm run lint
 ```
 
-Aplicația va fi disponibilă la [http://localhost:3000](http://localhost:3000).
+## 🚀 Deployment
 
-## Deployment automat
+Aplicația este configurată pentru deployment automat pe VPS:
 
-### GitHub Actions (Recomandat)
-Aplicația se deploiază automat pe **orex.site** când faci push pe branch-ul `main` sau `master`.
-
-**Configurare necesară în GitHub:**
-1. Mergi la Settings → Secrets and variables → Actions
-2. Adaugă secret-ul: `SERVER_PASSWORD` cu valoarea `12wq3er4`
+### Deployment automat (GitHub Actions)
+```bash
+git add .
+git commit -m "Update aplicație"
+git push origin main
+```
 
 ### Deployment manual
-
 ```bash
-# Deployment complet cu script
 npm run deploy
-
-# Doar upload fișiere
-npm run deploy:manual
-
-# Restart aplicația pe server
-npm run server:restart
-
-# Vezi logs-urile aplicației
-npm run server:logs
-
-# Vezi statusul aplicației
-npm run server:status
 ```
 
-## Server de producție
-
-- **Server**: 64.225.49.128
-- **User**: root
-- **Path**: /var/www/orex-app
-- **Port**: 3000
-- **Process Manager**: PM2
-
-## Structura proiectului
+## 📁 Structura proiectului
 
 ```
-├── src/
-│   ├── app/              # App Router pages
-│   │   ├── globals.css   # Stiluri globale
-│   │   ├── layout.tsx    # Layout principal
-│   │   └── page.tsx      # Homepage
-│   └── components/       # Componente reutilizabile
-├── public/               # Fișiere statice
-├── .github/
-│   └── workflows/
-│       └── deploy.yml    # GitHub Actions workflow
-├── deploy.sh             # Script deployment manual
-├── ecosystem.config.js   # Configurație PM2
-└── package.json          # Dependințe și scripturi
+src/
+├── app/
+│   ├── api/generate-video/    # API pentru generarea video
+│   ├── globals.css           # Stiluri globale
+│   ├── layout.tsx            # Layout principal
+│   └── page.tsx              # Pagina principală
+├── components/
+│   ├── ImageUpload.tsx       # Componentă upload imagini
+│   ├── VideoSettings.tsx     # Setări video
+│   └── VideoPreview.tsx      # Previzualizare video
 ```
 
-## Monitorizare
+## ⚙️ Configurare
 
-Pentru a monitoriza aplicația pe server:
+### Variabile de mediu
+Nu sunt necesare variabile de mediu pentru funcționarea de bază.
+
+### Dependențe server
+Pe serverul VPS trebuie instalat:
+- Node.js 18+
+- FFmpeg
+- PM2 (pentru process management)
+
+## 🎯 Utilizare
+
+1. **Încarcă imagini** - Trage și lasă imagini sau click pentru a selecta
+2. **Configurează setările** - Ajustează durata, tranzițiile și calitatea
+3. **Generează video** - Click pe butonul "Generează Video"
+4. **Previzualizează** - Urmărește video-ul generat
+5. **Descarcă** - Salvează video-ul pe dispozitiv
+
+## 🔧 Scripts disponibile
 
 ```bash
-# Vezi toate procesele PM2
-npm run server:status
-
-# Vezi logs-urile în timp real
-npm run server:logs
-
-# Restart aplicația
-npm run server:restart
+npm run dev          # Development server
+npm run build        # Build pentru producție
+npm run start        # Start server producție
+npm run lint         # Linting
+npm run deploy       # Deployment complet
+npm run deploy:manual # Doar upload fișiere
+npm run server:restart # Restart aplicație pe server
+npm run server:logs   # Logs aplicație
+npm run server:status # Status aplicație
 ```
 
-## Dezvoltare
+## 📊 Performanță
 
-Poți edita pagina principală modificând `src/app/page.tsx`. Pagina se actualizează automat când salvezi fișierul.
+- **Upload**: Suportă imagini până la 50MB
+- **Procesare**: Optimizată pentru imagini 4K
+- **Output**: Video-uri de calitate profesională
+- **Compatibilitate**: Suportă toate browserele moderne
 
-Aplicația folosește [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) pentru optimizarea fonturilor.
+## 🐛 Troubleshooting
+
+### Probleme comune:
+
+1. **Eroare la generarea video-ului**
+   - Verifică că FFmpeg este instalat pe server
+   - Asigură-te că imaginile sunt în format suportat
+
+2. **Upload lent**
+   - Reduce dimensiunea imaginilor
+   - Verifică conexiunea la internet
+
+3. **Video de calitate scăzută**
+   - Alege calitate "Înaltă" în setări
+   - Folosește imagini cu rezoluție mare
+
+## 📝 Licență
+
+Acest proiect este dezvoltat pentru orex.site.
+
+## 🤝 Contribuții
+
+Pentru sugestii sau raportarea de bug-uri, contactează echipa de dezvoltare.

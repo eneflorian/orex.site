@@ -1,35 +1,26 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Orex.site - Next.js 14 App",
-  description: "Aplicație Next.js 14 cu deployment automat pe orex.site. Construită cu TypeScript, Tailwind CSS și GitHub Actions.",
-};
+  title: 'Video Generator - Creează video din poze',
+  description: 'Aplicație pentru generarea de video din imagini cu efecte și tranziții',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="ro">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={inter.className}>
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+          {children}
+        </div>
       </body>
     </html>
-  );
+  )
 }

@@ -1,4 +1,20 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['ffmpeg-static', 'fluent-ffmpeg']
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: '50mb',
+    },
+  },
+  webpack: (config) => {
+    config.externals.push({
+      'ffmpeg-static': 'commonjs ffmpeg-static',
+      'fluent-ffmpeg': 'commonjs fluent-ffmpeg'
+    });
+    return config;
+  }
+};
 
 export default nextConfig;
