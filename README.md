@@ -38,7 +38,7 @@ npm run dev
 
 ## 🚀 Deployment
 
-Aplicația este configurată pentru deployment automat pe VPS:
+Aplicația este configurată pentru deployment automat pe VPS prin GitHub Actions:
 
 ### Deployment automat (GitHub Actions)
 ```bash
