@@ -3,11 +3,6 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['ffmpeg-static', 'fluent-ffmpeg']
   },
-  api: {
-    bodyParser: {
-      sizeLimit: '50mb',
-    },
-  },
   webpack: (config) => {
     config.externals.push({
       'ffmpeg-static': 'commonjs ffmpeg-static',

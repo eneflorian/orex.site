@@ -7,11 +7,16 @@ interface VideoSettingsProps {
     quality: string
     fps: number
   }
-  onSettingsChange: (settings: any) => void
+  onSettingsChange: (settings: {
+    duration: number
+    transition: string
+    quality: string
+    fps: number
+  }) => void
 }
 
 export default function VideoSettings({ settings, onSettingsChange }: VideoSettingsProps) {
-  const updateSetting = (key: string, value: any) => {
+  const updateSetting = (key: string, value: string | number) => {
     onSettingsChange({
       ...settings,
       [key]: value

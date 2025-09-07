@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Upload, Play, Download, Settings, Image, Video } from 'lucide-react'
+import { Play, Download, Settings, Image, Video } from 'lucide-react'
 import ImageUpload from '@/components/ImageUpload'
 import VideoSettings from '@/components/VideoSettings'
 import VideoPreview from '@/components/VideoPreview'

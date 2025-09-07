@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { writeFile, mkdir, rm } from 'fs/promises'
+import { writeFile, mkdir, rm, readFile } from 'fs/promises'
 import { join } from 'path'
 import { v4 as uuidv4 } from 'uuid'
 import ffmpeg from 'fluent-ffmpeg'
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
         let command = ffmpeg()
         
         // Add images with duration
-        imageFiles.forEach((imagePath, index) => {
+        imageFiles.forEach((imagePath) => {
           command = command.input(imagePath)
         })
         
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
               }
             }),
             // Concatenate all videos
-            ...imageFiles.map((_, index) => `[v${index}]`).join('') + 
+            imageFiles.map((_, index) => `[v${index}]`).join('') + 
             `concat=n=${imageFiles.length}:v=1:a=0[outv]`
           ])
           .outputOptions([
@@ -94,7 +94,7 @@ export async function POST(request: NextRequest) {
       })
       
       // Read generated video
-      const videoBuffer = await writeFile(outputPath)
+      const videoBuffer = await readFile(outputPath)
       
       // Clean up temporary files
       await rm(tempDir, { recursive: true, force: true })
